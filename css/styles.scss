@@ -1,0 +1,314 @@
+$page-color: #E73934;
+$color-2: #3b0c0c;
+$curve: 6px; 
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', san-serif;
+    border: none;
+    outline: none;
+}
+
+// Home
+header, header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bg-header {
+    background-color: $color-2;
+    box-shadow: 0px 2px 4px gray;
+}
+
+nav a:hover, nav a.active {
+    border: 2px solid $page-color;
+}
+
+main {
+    min-height: 76vh;
+}
+
+#background-main {
+    min-height: 100vh;
+    background-image: url('../images/background-photo.jpg');
+    background-size: cover;
+    background-position: center 0;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20vh;
+        
+        $items: 
+            'h1' 2.8em 400 36%,
+            'p' 1.9em 300 36%,
+            'a' 1.4em normal 12%;
+            
+        @each $elem, $f-size, $weight, $width in $items {
+            #{$elem} {
+                text-align: center;
+                color: #fff;
+                font-weight: $weight;
+                font-size: $f-size;
+                width: $width;
+            }
+        }
+        
+        h1 {
+            text-transform: uppercase;
+        }
+
+        p {
+            margin: 3vh 0;
+        }
+
+        a {
+            background-color: $page-color;
+            border-radius: $curve;
+            padding: 1.5vh 0;
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+}
+
+.home-sticky {
+    position: sticky;
+}
+
+// Applies to all pages
+header {
+    height: 15vh;
+    top: 0;
+    padding: 1vh 10vw;
+    flex-direction: row;
+    margin: 0 auto;
+    
+    > img {
+        height: 10vh;
+        width: auto;
+        margin: auto 0;
+    }
+
+    nav {
+        align-self: flex-end;
+        margin: auto 0;
+        
+        a {
+            text-decoration: none;
+            color: $page-color;
+            padding: 6px 12px;
+            margin: auto 0;
+            
+            &:not(:last-child) {
+                margin-right: 1vw;
+            }
+        }
+    }
+}
+
+// Applies to all pages
+footer {
+    height: 9vh;
+    display: flex;
+    font-size: .9em;
+    width: 100%;
+    padding: 0 10vw;
+    background-color: $color-2;
+    color: #fff;
+    font-weight: 300;
+    
+    > p {
+        flex-grow: 1;
+    }
+
+    > * {
+        margin: auto 0;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: flex-end;
+        align-self: flex-end;
+        flex-grow: 1;
+        
+        a {
+            color: #fff;
+            
+            &:not(:last-child) {
+                margin-right: 1.5vw;
+            }
+            
+            img {
+                height: 70%;
+            }
+        }
+    }
+}
+
+// All Startups
+#startups {
+    padding: 3.5vh 15vw;
+
+    .searchbar {
+        display: flex;
+        flex-direction: row;
+        height: 5vh;
+        
+        input {
+            width: 90%;
+            border: 1px solid rgb(224, 224, 224);
+            border-right: 0px;
+            border-radius: $curve 0 0 $curve;
+            padding: 0 15px;
+
+            &:focus {
+                transition: border .3s ease-in-out;
+                border-color: $page-color;
+            }
+        }
+    
+        button {
+            width: 10%;
+            padding-left: 12px;
+            color: #fff;
+            background-color: $page-color;
+            border-radius: 0 $curve $curve 0;
+            cursor: pointer;
+
+            background-image: url('../images/icons/search.png');
+            background-repeat: no-repeat;
+            background-position: 15px center;
+            background-size: 14%;
+
+            @each $pseudo, $color in 
+                'hover' rgb(245, 89, 83), 
+                'active' rgb(255, 112, 107) {
+                    &:#{$pseudo} {
+                        background-color: $color;
+                    }
+            }
+        }
+    }
+
+    .profiles {
+        display: grid;
+        row-gap: 8vh;
+        margin: 6vh 0;
+        padding: 0 5vw;
+
+        .startup {
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+            
+            img {
+                width: 60%;
+            }
+            
+            .details {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border-bottom: 1px solid rgb(224, 224, 224);
+                font-weight: 300;
+
+                > * {
+                    margin-bottom: 1.3vh;
+                }
+
+                :first-child {
+                    width: auto;
+                    font-size: 1.4em;
+                    font-weight: 400;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        text-decoration: underline;
+                        color: $page-color;
+                    }
+                }
+
+                p {
+                    font-size: .9em;
+                }
+
+                button {
+                    padding: .8vh 0;
+                    width: 15%;
+                    border-radius: 3px;
+                    border: 1px solid rgb(202, 202, 202);
+                    background-color: transparent;
+                    margin-bottom: 3vh;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgb(228, 228, 228);
+                    }
+
+                    &:active {
+                        background-color: rgb(241, 241, 241);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Sign up + Log in
+.page-form {
+    padding-top: 7vh;
+    align-items: center;
+    
+    &, & form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & form {
+        width: 50%;
+
+        @each $elem, $margin, $f-weight in 
+            'h2' 4vh 500,
+            'label' .5vh 500,
+            'input' 2vh initial {
+            #{$elem} {
+                margin-bottom: $margin;
+                font-weight: $f-weight; 
+            }
+        }
+
+        input { 
+            padding: 1.7% 0 1.7% .9%;
+            border-radius: $curve;
+
+            &:not([type="submit"]) {
+                border: 1px solid rgb(202, 202, 202);
+                
+                &:focus::placeholder {
+                    transition: .3s ease-in-out;
+                    color: rgb(197, 197, 197)
+                }
+                
+                &:focus {
+                    transition: .3s ease-in-out;
+                    border-color: gray;
+                }
+            }
+
+            &[type="submit"] {
+                background-color: $page-color;
+                color: #fff;
+                padding: 2vh 0;
+
+                &:active {
+                    transform: scaleX(.98);
+                }
+            }
+        }
+    }
+}
